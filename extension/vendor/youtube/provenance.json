@@ -1,0 +1,25 @@
+{
+  "version": "18.3.0",
+  "url": "https://registry.npmjs.org/youtubei.js/-/youtubei.js-18.3.0.tgz",
+  "integrity": "sha512-6Cwn/U8a+OjpZp5XgqOjwy7Lk0RrGavm3I5zO7qZWO+fes20vhWMZnlUs0h/97SwjS0AsxAZrZ5bJ85XBJVWTw==",
+  "files": [
+    {
+      "name": "LICENSE",
+      "bytes": 1062,
+      "sha256": "bf82e28381c6256138322a79da2082db5ddb040b4b7009b520f08a419d722c69"
+    },
+    {
+      "name": "browser.js",
+      "bytes": 1580071,
+      "sha256": "e72a01827f40fd747f3e5b15580d84ecd52e0cd45ed8de04235d58ea8be286f1"
+    },
+    {
+      "name": "package.json",
+      "bytes": 5381,
+      "sha256": "959e19ae0b53f939e02210b8d2fc63f7f74b95829e496c4e35c70f1d2d748ae9"
+    }
+  ],
+  "patches": [
+    "Removed hard-coded Google API key defaults from browser.js"
+  ]
+}

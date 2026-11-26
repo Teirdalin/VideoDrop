@@ -1,0 +1,14 @@
+{
+  "name": "videodrop",
+  "version": "1.3.3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tools/test-chrome.mjs",
+    "test:browser": "node tools/browser-test.mjs",
+    "package": "node tools/package-chrome.mjs",
+    "package:full": "node tools/package-chrome.mjs",
+    "package:windows": "powershell -NoProfile -File installer/Build.ps1",
+    "test:youtube": "node tools/test-chrome-youtube.mjs --chrome"
+  }
+}

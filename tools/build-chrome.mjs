@@ -1,0 +1,21 @@
+import { cp, readFile, mkdir, rm } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { assertNoBundledGoogleApiKeys } from './youtube-vendor-keys.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const extension=path.join(root,'extension');
+const manifest=JSON.parse(await readFile(path.join(extension,'manifest.json'),'utf8'));
+if(manifest.permissions.includes('nativeMessaging'))throw new Error('VideoDrop must run entirely inside Chrome');
+if('key' in manifest)throw new Error('The distribution manifest must not contain a development key');
+const project=JSON.parse(await readFile(path.join(root,'package.json'),'utf8'));
+if(manifest.name!=='VideoDrop'||manifest.version!==project.version)throw new Error('Primary extension and project versions must match');
+assertNoBundledGoogleApiKeys(await readFile(path.join(root,'youtube','vendor','browser.js'),'utf8'));
+await cp(path.join(root,'youtube','youtube.js'),path.join(extension,'youtube.js'));
+await cp(path.join(root,'youtube','url.js'),path.join(extension,'youtube-url.js'));
+await mkdir(path.join(extension,'vendor','youtube'),{recursive:true});
+for(const name of ['browser.js','LICENSE','package.json','provenance.json'])await cp(path.join(root,'youtube','vendor',name),path.join(extension,'vendor','youtube',name));
+// Keep the previously supplied unpacked path updated for existing installations.
+await mkdir(path.join(root,'chrome-extension'),{recursive:true});
+await cp(extension,path.join(root,'chrome-extension'),{recursive:true});
+await rm(path.join(root,'chrome-extension','youtube-headers.json'),{force:true});
+console.log(`VideoDrop ${manifest.version}: full Chrome extension built.`);

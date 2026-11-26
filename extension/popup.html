@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VideoDrop</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <header class="brand-row">
+      <div class="brand"><img src="icons/32.png" width="20" height="20" alt=""><h1>VideoDrop</h1></div>
+      <a class="help-link" href="help.html" target="_blank" rel="noopener noreferrer">Help</a>
+    </header>
+
+    <section class="download-panel" aria-label="Download a video">
+      <div id="page-context" class="page-context" hidden><h2 id="page-title"></h2><span id="page-host"></span></div>
+      <div class="picker-label"><label for="video-picker">Video</label><button type="button" id="rescan" class="text-button" title="Scan this page again">Rescan</button></div>
+      <select id="video-picker" disabled><option>Looking for videos…</option></select>
+      <div class="selection-meta" id="selection-meta" aria-live="polite">Checking this page…</div>
+      <button type="button" id="download" class="primary-button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Download</span></button>
+    </section>
+
+    <p id="notice" class="notice" role="status" aria-live="polite" hidden></p>
+    <section id="jobs-section" aria-label="Recent downloads" hidden>
+      <h2 class="section-title">Recent downloads</h2>
+      <div id="jobs" aria-live="polite"></div>
+    </section>
+
+    <footer class="utility-footer">
+    <details id="preferences">
+      <summary><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg>Settings</summary>
+      <div class="preferences-body">
+        <label class="setting"><span>Ask where to save</span><input type="checkbox" id="save-as"></label>
+        <p class="setting-hint" id="save-note">Saves to your Downloads folder</p>
+        <label class="setting"><span>Show creator support links</span><input type="checkbox" id="show-support" checked></label>
+        <div id="support" class="support"><span>Support</span><a href="https://www.patreon.com/cw/Teirdalin" target="_blank" rel="noopener noreferrer">Patreon</a><a href="https://ko-fi.com/teirdalin" target="_blank" rel="noopener noreferrer">Ko-fi</a></div>
+        <p id="build-info" class="build-info"></p>
+      </div>
+    </details>
+
+      <button type="button" class="text-button all-downloads" id="all-downloads">All downloads</button>
+    </footer>
+  </main>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
