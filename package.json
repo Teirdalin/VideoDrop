@@ -8,7 +8,7 @@
     "test:browser": "node tools/browser-test.mjs",
     "package": "node tools/package-chrome.mjs",
     "package:full": "node tools/package-chrome.mjs",
-    "package:windows": "powershell -NoProfile -File installer/Build.ps1",
+    "package:windows": "node installer/build.mjs",
     "test:youtube": "node tools/test-chrome-youtube.mjs --chrome"
   }
 }
